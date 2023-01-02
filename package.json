@@ -1,0 +1,16 @@
+{
+  "name": "askchatgpt",
+  "version": "1.0.0",
+  "description": "browser plugin for chatgpt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eventsource-parser": "^0.0.5",
+    "expiry-map": "^2.0.0",
+    "uuid": "^9.0.0"
+  }
+}
