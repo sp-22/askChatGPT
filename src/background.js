@@ -17,12 +17,8 @@ chrome.contextMenus.create({
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "askchatgpt") {
     // Send a message to the content script
-    console.log("1st");
     if (info.selectionText) {
-      console.log("2");
       const selectedText = info.selectionText;
-      console.log(tab.id);
-      console.log(tab);
       chrome.tabs.sendMessage(tab.id, { type: "OPEN_MODAL",selectedText});
     }
   }
@@ -69,9 +65,7 @@ async function callGPT(query,callback) {
     }),
   });
   console.log(re);
-  // if (re.ok == False){
-  //   answer = False;
-  // }
+  
   const parser = createParser((event) => {
     if (event.type === "event") {
       if (event.data != "[DONE]") {

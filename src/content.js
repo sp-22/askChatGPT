@@ -26,22 +26,6 @@ function getAnswer(question) {
     document.getElementById("rcnt").appendChild(container);
   }
   connectBackground(question,container);
-  //conecting background script to get info
-  // const port = chrome.runtime.connect();
-  // port.onMessage.addListener(function (msg) {
-  //   if (msg.answer) {
-  //     container.innerHTML = `<p>${msg.answer}</p>`;
-  //   } else if (msg.error === "UNAUTHORIZED") {
-  //     container.innerHTML =
-  //       '<p>Please login at <a href="https://chat.openai.com" target="_blank">chat.openai.com</a> first</p>';
-  //   } else {
-  //     container.innerHTML = "<p>Failed to load response from ChatGPT</p>";
-  //   }
-  // });
-  // port.postMessage({
-  //   action: "callGPT",
-  //   question: question,
-  // });
 }
 
 //to open model on event of context menu
