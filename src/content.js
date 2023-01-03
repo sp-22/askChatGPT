@@ -25,6 +25,7 @@ function getAnswer(question) {
     container.classList.add("sidebar-free");
     document.getElementById("rcnt").appendChild(container);
   }
+  container.innerHTML = "<p>Waiting for ChatGPT ...</p>";
   connectBackground(question,container);
 }
 
@@ -37,7 +38,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     <div class="modal-content">
       <div class="modal-title-bar">
         <div class="logo">
-          <img src="logo.png" alt="Logo">
+          <img src="logow.png" alt="Logo">
           <span class="name">Ask ChatGPT</span>
         </div>
         <button class="close-button" onclick="closeModal()">&times;</button>

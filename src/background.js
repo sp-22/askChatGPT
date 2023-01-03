@@ -106,7 +106,7 @@ chrome.runtime.onConnect.addListener((port) => {
             port.postMessage({ answer });
           });
         } catch (err) {
-          console.error(err);
+          //console.error(err);
           port.postMessage({ error: err.message });
           cache.delete(KEY_ACCESS_TOKEN);
         }

@@ -8,6 +8,7 @@
     margin-left:10px;
     max-width:436px !important;
     position:relative;
+    height: fit-content;
   }
   .chat_gpt_container p:first-of-type{
       margin-top:0px;

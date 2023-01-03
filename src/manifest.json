@@ -2,6 +2,13 @@
   "manifest_version": 3,
   "name": "Ask-ChatGPT",
   "version": "1.0",
+  "icons": {
+    "16": "logob.png",
+    "32": "logob.png",
+    "48": "logob.png",
+    "128": "logob.png"
+  },
+  "host_permissions": ["https://*.openai.com/"],
   "permissions": [
     "activeTab",
     "contextMenus"
