@@ -8,17 +8,22 @@ const cache = new ExpiryMap(10 * 1000);
 
 // Create a context menu item
 chrome.contextMenus.create({
-  id: "ask-chatgpt",
+  id: "askchatgpt",
   title: "Ask ChatGPT",
   contexts: ["selection"],
 });
 
 // Listen for when the user clicks on the context menu item
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "ask-chatgpt") {
+  if (info.menuItemId === "askchatgpt") {
     // Send a message to the content script
+    console.log("1st");
     if (info.selectionText) {
-      chrome.tabs.sendMessage(tab.id, { type: "OPEN_MODAL" });
+      console.log("2");
+      const selectedText = info.selectionText;
+      console.log(tab.id);
+      console.log(tab);
+      chrome.tabs.sendMessage(tab.id, { type: "OPEN_MODAL",selectedText});
     }
   }
 });

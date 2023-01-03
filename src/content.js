@@ -47,12 +47,7 @@ function getAnswer(question) {
 //to open model from context menu
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === "OPEN_MODAL") {
-    // Create a div element to hold the modal
-    const modalDiv = document.createElement("div");
-    modalDiv.innerHTML = request.html;
-    document.body.appendChild(modalDiv);
-
-    // Display the modal
-    modalDiv.style.display = "block";
+    const selectedText = request.selectedText;
+    console.log(selectedText);
   }
 });
