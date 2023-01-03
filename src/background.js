@@ -32,13 +32,14 @@ async function getAccessToken() {
     .then((r) => r.json())
     .catch(() => ({}));
   if (!resp.accessToken) {
+    answer = "UNAUTHORIZED";
     throw new Error("UNAUTHORIZED");
   }
   cache.set(KEY_ACCESS_TOKEN, resp.accessToken);
   return resp.accessToken;
 }
 //get answer from chatgpt
-async function callGPT(query) {
+async function callGPT(query,callback) {
   const accessToken = await getAccessToken();
   const re = await fetch("https://chat.openai.com/backend-api/conversation", {
     method: "POST",
@@ -62,12 +63,16 @@ async function callGPT(query) {
       parent_message_id: uuidv4(),
     }),
   });
-  //console.log(re);
+  console.log(re);
+  // if (re.ok == False){
+  //   answer = False;
+  // }
   const parser = createParser((event) => {
     if (event.type === "event") {
       if (event.data != "[DONE]") {
         let data = JSON.parse(event.data);
-        answer = data.message.content.parts[0];
+        answer = data?.message?.content?.parts?.[0];
+        callback(answer);
       }
     }
   });
@@ -76,7 +81,6 @@ async function callGPT(query) {
     parser.feed(str);
   }
   console.log(answer);
-  return answer;
 }
 //collect packets
 async function* streamAsyncIterable(stream) {
@@ -94,14 +98,19 @@ async function* streamAsyncIterable(stream) {
   }
 }
 
-chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-  if (request.action === "callGPT") {
-    console.log("background")
-    //result = await callGPT(request.query);
-    console.log("result")
-    //console.log(result)
-    //sendResponse(result);
-    callGPT(request.query).then(sendResponse);
-    return true;
-  }
+//connection to content
+chrome.runtime.onConnect.addListener((port) => {
+  port.onMessage.addListener(async (msg) => {
+    if(msg.action=="callGPT"){
+        try {
+          await callGPT(msg.question, (answer) => {
+            port.postMessage({ answer });
+          });
+        } catch (err) {
+          console.error(err);
+          port.postMessage({ error: err.message });
+          cache.delete(KEY_ACCESS_TOKEN);
+        }
+    }
+  });
 });
