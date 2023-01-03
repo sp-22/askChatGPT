@@ -16,7 +16,7 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "css": ["searchpagebox.css"]
+      "css": ["searchpagebox.css","modal.css"]
     }
   ]
 }
