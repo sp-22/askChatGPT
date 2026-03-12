@@ -1,5 +1,9 @@
 # askChatGPT
 chatgpt browser extension, to improve workflow.
+
+⚠️ Note: This is a legacy project from January 2023. It was built during the "early days" of ChatGPT to bridge the gap between search and AI. Due to changes in OpenAI's security and Chrome's Manifest V3, this may no longer function as intended. It's preserved here as a snapshot of early AI workflow tools!
+
+
 It has two key features:
 1) Shows Google search query response from ChatGPT
 ![Screen Recording - 4 January 2023](https://user-images.githubusercontent.com/68839235/210546594-524daf6f-a023-4bb3-a93a-c0dd2de441a4.gif)
